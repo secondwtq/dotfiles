@@ -90,9 +90,24 @@ tmux_conf_theme_status_fg='#8a8a8a'                     # light gray
 tmux_conf_theme_status_bg='#080808'                     # dark gray
 tmux_conf_theme_status_attr='none'
 
+# terminal title
+#   - built-in variables are:
+#     - #{circled_window_index}
+#     - #{circled_session_name}
+#     - #{hostname}
+#     - #{hostname_ssh}
+#     - #{username}
+#     - #{username_ssh}
+tmux_conf_theme_terminal_title='#h ❐ #S ● #I #W'
+
 # window status style
 #   - built-in variables are:
 #     - #{circled_window_index}
+#     - #{circled_session_name}
+#     - #{hostname}
+#     - #{hostname_ssh}
+#     - #{username}
+#     - #{username_ssh}
 tmux_conf_theme_window_status_fg='#8a8a8a'              # light gray
 tmux_conf_theme_window_status_bg='#080808'              # dark gray
 tmux_conf_theme_window_status_attr='none'
@@ -103,6 +118,11 @@ tmux_conf_theme_window_status_format='#I #W'
 # window current status style
 #   - built-in variables are:
 #     - #{circled_window_index}
+#     - #{circled_session_name}
+#     - #{hostname}
+#     - #{hostname_ssh}
+#     - #{username}
+#     - #{username_ssh}
 tmux_conf_theme_window_status_current_fg='#000000'      # black
 tmux_conf_theme_window_status_current_bg='#00afff'      # light blue
 tmux_conf_theme_window_status_current_attr='bold'
@@ -157,9 +177,9 @@ tmux_conf_theme_right_separator_sub='|'
 #     - #{uptime_s}
 #     - #{username}
 #     - #{username_ssh}
-tmux_conf_theme_status_left=' #S | #{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,} '
+tmux_conf_theme_status_left='=#S='
 # man strftime
-tmux_conf_theme_status_right='#{prefix}#{pairing} #{?battery_status, #{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} , %d %b %T | #{username}#{root} | #{hostname} '
+tmux_conf_theme_status_right='#{prefix}#{pairing} #{?battery_status, #{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} , #{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,} | #{username}#{root} | #{hostname} | %d %b %T '
 
 # status left style
 tmux_conf_theme_status_left_fg='#000000,#e4e4e4,#e4e4e4'  # black, white , white
@@ -254,23 +274,36 @@ set -g mouse on
 
 # force Vi mode
 #   really you should export VISUAL or EDITOR environment variable, see manual
-set -g status-keys vi
+set -g status-keys emacs
 set -g mode-keys vi
 
 # replace C-b by C-a instead of using both prefixes
-# set -gu prefix2
-# unbind C-a
+set -gu prefix2
+unbind C-a
 # unbind C-b
 # set -g prefix C-a
 # bind C-a send-prefix
 
 # move status line to top
-#set -g status-position top
+set -g status-position bottom
+set -g status-justify centre
 
 bind -r p previous-window
 bind -r n next-window
+
+bind-key "|" split-window -h 
+bind-key "\\" split-window -fh 
+bind-key "-" split-window -v 
+bind-key "_" split-window -fv 
+bind-key "%" split-window -h 
+bind-key '"' split-window -v 
 
 # for 24-bit color to work
 set -ga terminal-overrides ",*termite*:Tc"
 
 set -g status-interval 3
+# super useful when using "grouped sessions" and multi-monitor setup
+setw -g aggressive-resize on
+# set -s escape-time 0
+
+set -sg repeat-time 256

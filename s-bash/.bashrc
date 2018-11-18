@@ -5,8 +5,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
-PS1='[\u@\h \W]\$ '
+# PS1='[\u@\h \W]\$ '
 
 # Path to the bash it configuration
 export BASH_IT="${HOME}/.bash_it"
@@ -74,3 +73,15 @@ source "$BASH_IT"/bash_it.sh
 if [ -f ~/.config/bash-it-custom/sensible.bash ]; then
    source ~/.config/bash-it-custom/sensible.bash
 fi
+
+stty werase undef
+bind '\C-w: backward-kill-word'
+
+[[ -s "$HOME/.qfc/bin/qfc.sh" ]] && source "$HOME/.qfc/bin/qfc.sh"
+qfc_quick_command 'cd' '\C-b' 'cd $0'
+qfc_quick_command 'vim' '\C-p' 'vim $0'
+
+# alias ls='ls --color=auto'
+# alias grep='grep --color=auto'
+# alias fgrep='fgrep --color=auto'
+# alias egrep='egrep --color=auto'
