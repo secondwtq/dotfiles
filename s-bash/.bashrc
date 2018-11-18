@@ -81,6 +81,14 @@ bind '\C-w: backward-kill-word'
 qfc_quick_command 'cd' '\C-b' 'cd $0'
 qfc_quick_command 'vim' '\C-p' 'vim $0'
 
+# export EDITOR=?
+
+# what's this?
+export BLOCKSIZE=1k
+
+alias l='ls -Fap'
+alias ll='ls -Flahp'
+alias less='less -SRXc'
 # alias ls='ls --color=auto'
 # alias grep='grep --color=auto'
 # alias fgrep='fgrep --color=auto'
