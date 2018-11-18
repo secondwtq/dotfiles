@@ -88,7 +88,7 @@ export BLOCKSIZE=1k
 
 alias l='ls -Fap'
 alias ll='ls -Flahp'
-alias less='less -SRXc'
+alias less='less -NSRXc'
 # alias ls='ls --color=auto'
 # alias grep='grep --color=auto'
 # alias fgrep='fgrep --color=auto'

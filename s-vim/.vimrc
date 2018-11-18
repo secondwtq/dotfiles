@@ -11,10 +11,12 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
 Plug 'rakr/vim-one'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
 
 call plug#end()
 
-set number " line number
+" set number " line number
+set number relativenumber
 set cursorline " (cul) highlight current line
 set ruler
 set mouse=a
