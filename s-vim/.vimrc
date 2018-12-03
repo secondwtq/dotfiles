@@ -13,6 +13,12 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 Plug 'rakr/vim-one'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
+Plug 'mileszs/ack.vim'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify'
+" Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
@@ -21,11 +27,41 @@ set number relativenumber
 set cursorline " (cul) highlight current line
 set ruler
 set mouse=a
+set ttymouse=sgr
+set ttyfast
+set lazyredraw
+
+" TODO: auto detect tab stop and easy switching in Vim & Emacs?
+set tabstop=2
+set shiftwidth=2
+set expandtab
+
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+set wrapscan
+
+" Show current mode in command-line.
+set showmode
+" Show already typed keys when more are expected.
+set showcmd
+
+" Show non-printable characters.
+set list
+if has('multi_byte') && &encoding ==# 'utf-8'
+  let &listchars = 'tab:▸ ,extends:❯,precedes:❮,nbsp:±'
+else
+  let &listchars = 'tab:> ,extends:>,precedes:<,nbsp:.'
+endif
+
+let g:ackprg = 'ag --vimgrep --smart-case'
 
 "Credit joshdick
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+" TODO: test true color support, compatibility on 256color mode and light/dark background in different contexts
 if (empty($TMUX))
   if (has("nvim"))
   "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
@@ -37,10 +73,14 @@ if (empty($TMUX))
   if (has("termguicolors"))
     set termguicolors
   endif
+else
+  set term=screen-256color
+  if (has("termguicolors"))
+    let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+    set termguicolors
+  endif
 endif
-
-" set t_8b=^[[48;2;%lu;%lu;%lum
-" set t_8f=^[[38;2;%lu;%lu;%lum
 
 colorscheme one
 set background=light

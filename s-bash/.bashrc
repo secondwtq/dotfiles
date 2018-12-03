@@ -2,6 +2,10 @@
 # ~/.bashrc
 #
 
+if [[ $TERM = dumb ]]; then
+    return
+fi
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -34,6 +38,7 @@ export IRC_CLIENT='irssi'
 export TODO="t"
 
 # Set this to false to turn off version control status checking within the prompt for all themes
+# TODO: hurts usability in Windows & large projects
 export SCM_CHECK=true
 
 export SCM_GIT_SHOW_DETAILS=false
@@ -88,8 +93,12 @@ export BLOCKSIZE=1k
 
 alias l='ls -Fap'
 alias ll='ls -Flahp'
-alias less='less -NSRc'
+# alias less='less -NSRc'
 # alias ls='ls --color=auto'
 # alias grep='grep --color=auto'
 # alias fgrep='fgrep --color=auto'
 # alias egrep='egrep --color=auto'
+
+export PATH="$HOME/.local/bin:$PATH"
+export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
+export LESS="-NRic"
