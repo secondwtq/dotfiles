@@ -1,0 +1,4 @@
+#! /bin/bash
+#export CCLS_TRACEME=1 # if you want to debug ccls, stop it right after main() is called
+#export LD_LIBRARY_PATH=~/llvm/Release/lib # if you link against shared library libLLVM.so, not statically
+exec ccls-executable --log-file=/tmp/ccls.log "$@"
