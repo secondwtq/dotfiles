@@ -1,0 +1,8 @@
+
+! clear mod3
+! add mod3 = Shift_R
+! clear shift
+! add shift = Shift_L
+
+remove mod1 = Alt_R
+add mod3 = Alt_R
