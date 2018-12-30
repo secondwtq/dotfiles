@@ -65,7 +65,7 @@
 "quickquit switch chrome"
   mod3 + b
 
-"find-cursor"
+"find-cursor -c '#555555'"
   m:0x0 + c:207
 
 #"xterm -geom 50x20+20+20"
