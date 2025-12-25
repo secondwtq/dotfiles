@@ -1,0 +1,13 @@
+<!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN" "http://www.freedesktop.org/standards/menu-spec/1.0/menu.dtd">
+<Menu>
+  <Name>Applications</Name>
+  <Directory>Applications.directory</Directory>
+  <DefaultAppDirs/>
+  <DefaultDirectoryDirs/>
+
+  <Include>
+    <All />
+  </Include>
+  <!-- Add other submenus or specific AppDirs here -->
+  <!-- <AppDir>/home/user/.local/share/applications</AppDir> -->
+</Menu>
